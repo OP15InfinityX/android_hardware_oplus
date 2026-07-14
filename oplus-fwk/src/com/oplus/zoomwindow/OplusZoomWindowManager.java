@@ -22,4 +22,8 @@ public class OplusZoomWindowManager {
     public boolean isSupportZoomWindowMode() {
         return false;
     }
+
+    public OplusZoomWindowInfo getCurrentZoomWindowState() {
+        return new OplusZoomWindowInfo();
+    }
 }

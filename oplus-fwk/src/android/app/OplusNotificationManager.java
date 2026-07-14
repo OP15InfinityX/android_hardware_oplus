@@ -6,6 +6,7 @@
 
 package android.app;
 
+import android.content.ComponentName;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Singleton;
@@ -59,6 +60,16 @@ public class OplusNotificationManager {
     public boolean checkGetStdid(String pkg, int uid, String type) {
         try {
             return getService().checkGetStdid(pkg, uid, type);
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    public void setNotificationListenerAccessGranted(
+            ComponentName listener, boolean granted, boolean userSet) {
+        try {
+            NotificationManager.getService()
+                    .setNotificationListenerAccessGranted(listener, granted, userSet);
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

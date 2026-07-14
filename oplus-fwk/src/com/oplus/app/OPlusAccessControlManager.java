@@ -148,6 +148,34 @@ public class OPlusAccessControlManager {
         return false;
     }
 
+    public boolean registerAccessControlObserver(String type, IOplusAccessControlObserver observer) {
+        IOplusAccessControlManager service = getService();
+        if (service == null) {
+            return false;
+        }
+        try {
+            return service.registerAccessControlObserver(type, observer);
+        } catch (RemoteException e) {
+            clearService();
+            Log.w(TAG, "registerAccessControlObserver failed", e);
+        }
+        return false;
+    }
+
+    public boolean unregisterAccessControlObserver(String type, IOplusAccessControlObserver observer) {
+        IOplusAccessControlManager service = getService();
+        if (service == null) {
+            return false;
+        }
+        try {
+            return service.unregisterAccessControlObserver(type, observer);
+        } catch (RemoteException e) {
+            clearService();
+            Log.w(TAG, "unregisterAccessControlObserver failed", e);
+        }
+        return false;
+    }
+
     public void setPrivacyAppsInfoForUser(Map<String, Integer> privacyInfo, boolean enabled, int userId) {
         setAccessControlAppsInfo(TYPE_ENCRYPT, privacyInfo, userId);
         setAccessControlEnabled(TYPE_ENCRYPT, enabled, userId);

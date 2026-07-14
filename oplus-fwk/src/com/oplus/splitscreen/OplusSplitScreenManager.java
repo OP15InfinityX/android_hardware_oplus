@@ -46,4 +46,8 @@ public class OplusSplitScreenManager {
     public boolean unregisterSplitScreenObserver(IOplusSplitScreenObserver observer) {
         return false;
     }
+
+    public boolean isInSplitScreenMode() {
+        return false;
+    }
 }

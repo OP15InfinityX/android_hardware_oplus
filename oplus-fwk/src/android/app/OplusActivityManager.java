@@ -9,6 +9,7 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import com.oplus.app.OplusAppInfo;
 import com.oplus.app.OplusTaskInfoChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /* loaded from: classes.dex */
@@ -29,6 +30,10 @@ public class OplusActivityManager extends OplusBaseActivityManager implements IO
     }
 
     public void swapDockedFullscreenStack() throws RemoteException {
+    }
+
+    public List<ActivityManager.RunningAppProcessInfo> getRunningAppProcesses() throws RemoteException {
+        return ActivityManager.getService().getRunningAppProcesses();
     }
 
     @Override
@@ -119,6 +124,10 @@ public class OplusActivityManager extends OplusBaseActivityManager implements IO
 
     public java.util.List<String> getGlobalProcessWhiteList() throws android.os.RemoteException {
         return new java.util.ArrayList<>();
+    }
+
+    public void compactProcess(ArrayList<Integer> pids, int compactionFlags, int advice)
+            throws android.os.RemoteException {
     }
 
     public void addStageProtectInfo(String callerPkg, String pkg, java.util.List<String> processList, String reason, long timeout, com.oplus.app.IOplusProtectConnection connection) throws android.os.RemoteException {
