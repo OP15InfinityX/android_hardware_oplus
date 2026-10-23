@@ -188,6 +188,7 @@
 /dev/hbp_core(/.*)?                                                        u:object_r:oplus_touchdaemon_device:s0
 /dev/hbp0                                                                  u:object_r:oplus_touchdaemon_device:s0
 /dev/hbp1                                                                  u:object_r:oplus_touchdaemon_device:s0
+/dev/hbp_report[0-9]+                                                       u:object_r:oplus_touchdaemon_device:s0
 /dev/socket/hidl2touchdaemon_client                                        u:object_r:oplus_touchdaemon_socket:s0
 /dev/socket/hidl2touchdaemon_server                                        u:object_r:oplus_touchdaemon_socket:s0
 /dev/tcm_hbp0                                                              u:object_r:oplus_touchdaemon_device:s0
