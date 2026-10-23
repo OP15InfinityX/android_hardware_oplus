@@ -33,41 +33,23 @@ public class OplusCfgFilePolicy {
         return result;
     }
 
-    public static List<String> getCfgFileList(String configName, String dir, int slot) {
-        if (dir == null || dir.isEmpty()) {
+    // COS17's binary contract returns Files, in increasing policy priority.
+    public static List<File> getCfgFileList(String configName, String dir, int slot) {
+        if (configName == null || configName.isEmpty() || dir == null || dir.isEmpty()) {
             return Collections.emptyList();
         }
-
-        File base = new File(dir);
-        if (!base.exists()) {
-            return Collections.emptyList();
-        }
-
-        if (configName != null && !configName.isEmpty()) {
-            File file = new File(base, configName);
+        ArrayList<File> result = new ArrayList<>();
+        for (String level : getCfgLevelList(dir, slot)) {
+            File file = new File(level, configName);
             if (file.exists()) {
-                return Collections.singletonList(file.getAbsolutePath());
+                result.add(file);
             }
-            return Collections.emptyList();
-        }
-
-        File[] children = base.listFiles();
-        if (children == null || children.length == 0) {
-            return Collections.emptyList();
-        }
-
-        ArrayList<String> result = new ArrayList<>(children.length);
-        for (File child : children) {
-            result.add(child.getAbsolutePath());
         }
         return result;
     }
 
     public static File getCfgTopPriorityFile(String configName, String dir, int slot) {
-        List<String> files = getCfgFileList(configName, dir, slot);
-        if (files.isEmpty()) {
-            return null;
-        }
-        return new File(files.get(0));
+        List<File> files = getCfgFileList(configName, dir, slot);
+        return files.isEmpty() ? null : files.get(files.size() - 1);
     }
 }
