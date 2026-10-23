@@ -6,9 +6,11 @@ package android.view;
  * @hide
  */
 public interface ISurfaceExt {
-    default void setMaxDequeuedBufferCount(int bufferCount) {
+    default int setMaxDequeuedBufferCount(int bufferCount) {
+        return -1;
     }
 
-    default void nativeSetMaxDequeuedBufferCount(long nativeObject, int bufferCount) {
+    default int nativeSetMaxDequeuedBufferCount(long nativeObject, int bufferCount) {
+        return -1;
     }
 }

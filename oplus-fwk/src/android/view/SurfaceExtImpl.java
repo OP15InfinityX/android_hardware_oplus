@@ -20,15 +20,16 @@ public class SurfaceExtImpl implements ISurfaceExt {
     }
 
     @Override
-    public native void nativeSetMaxDequeuedBufferCount(long nativeObject, int bufferCount);
+    public native int nativeSetMaxDequeuedBufferCount(long nativeObject, int bufferCount);
 
     @Override
-    public void setMaxDequeuedBufferCount(int bufferCount) {
+    public int setMaxDequeuedBufferCount(int bufferCount) {
         synchronized (mLock) {
             mNativeObject = mSurface.mNativeObject;
             if (mNativeObject != 0) {
-                nativeSetMaxDequeuedBufferCount(mNativeObject, bufferCount);
+                return nativeSetMaxDequeuedBufferCount(mNativeObject, bufferCount);
             }
         }
+        return -1;
     }
 }
