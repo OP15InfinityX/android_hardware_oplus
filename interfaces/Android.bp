@@ -332,7 +332,7 @@ aidl_interface {
 
     backend: {
         cpp: {
-            enabled: true,
+            enabled: false,
         },
         java: {
             enabled: true,
@@ -409,7 +409,8 @@ aidl_interface {
     frozen: true,
 }
 
-// Java-only bindings for the existing OOS subsystem HALs; keep blob NDK libraries.
+// Keep legacy radio bindings Java-only. The COS17 radio compatibility interface
+// also needs the shared subsys NDK bindings; retain the separate vendor blob copy.
 // Sources and frozen API snapshots: LineageOS android_hardware_oplus f3b3f62fd728.
 aidl_interface {
     name: "vendor.oplus.hardware.subsys",
@@ -428,7 +429,7 @@ aidl_interface {
             enabled: true,
         },
         ndk: {
-            enabled: false,
+            enabled: true,
         },
     },
     versions_with_info: [
