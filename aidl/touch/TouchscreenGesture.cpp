@@ -78,8 +78,7 @@ ndk::ScopedAStatus TouchscreenGesture::setGestureEnabled(const Gesture& gesture,
     } else {
         contents &= ~gestureBit;
     }
-    contents |= OplusTouchConstants::DOUBLE_TAP_GESTURE;
-
+    // Preserve the double-tap bit managed by the power HAL during gesture restores.
     const std::string contentsHex = StringPrintf("%x", contents);
     const std::string contentsDec = std::to_string(contents);
     LOG(INFO) << "DT2W debug: write contentsDec=" << contents
