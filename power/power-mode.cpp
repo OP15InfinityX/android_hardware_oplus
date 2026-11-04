@@ -13,6 +13,8 @@
 
 #include <OplusTouchConstants.h>
 
+#include "charger-cool-down.h"
+
 using aidl::android::hardware::power::Mode;
 using aidl::vendor::oplus::hardware::charger::ICharger;
 using aidl::vendor::oplus::hardware::touch::IOplusTouch;
@@ -91,6 +93,7 @@ bool setDeviceSpecificMode(Mode type, bool enabled) {
                 int aidl_return = 0;
                 charger->notifyScreenStatus(enabled, &aidl_return);
             }
+            oplus::power::setChargerCoolDownActive(enabled);
             return false;
         }
         default:
